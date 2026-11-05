@@ -3,33 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page</title>
+    <title>Time Table Portal - Home</title>
     <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 </head>
-<body>
-    <header class="relative bg-blue-900 bg-local h-24 flex justify-between space-x-0.5">
-        <div>
-            <img class="absolute h-20 w-20 "src="/static/photo/departmentlogo_transparent.png">
-            <div class="subpixel-antialiased pl-28 pt-4 font-sans text-2xl text-gray-50 font-medium">
-                Time Table Portal
-            </div>
-                <br>
-            <div class="subpixel-antialiased pl-28 -mt-5 font-sans text-xl text-gray-50">
-                School Of Data Science And Forecasting
-            </div>
-        </div>
+<body class="min-h-screen flex flex-col justify-between bg-gray-50">
 
-        <div>
-            <img class="absolute h-20 w-20 bg-blue-100" src="/static/photo/davvLogo.png">
-        </div>
-        
-        
-    </header>
-    
+    <!-- Reusable Header -->
+    {% include 'header.html' %}
 
+    <!-- Main Content Area -->
+    <main class="flex-grow p-6">
+        <h2 class="text-xl font-semibold text-gray-700">Welcome to Time Table Portal</h2>
+        <!-- Page specific content goes here -->
+    </main>
 
-    <footer>
-        This is footer
-    </footer>
+    <!-- Reusable Footer -->
+    {% include 'footer.html' %}
+
 </body>
 </html>

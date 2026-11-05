@@ -1,0 +1,30 @@
+<!-- Independent Header Component -->
+<header class="bg-blue-900 h-24 px-6 flex items-center justify-between shadow-md">
+    <!-- Left Section: Dept Logo + Text -->
+    <div class="flex items-center space-x-4">
+        <img class="h-20 bg-blue-100 rounded-full w-20 object-contain" 
+             src="/static/photo/departmentlogo_transparent.png" 
+             alt="Department Logo">
+        <div>
+            <h1 class="text-2xl text-gray-50 font-medium">
+                Time Table Portal
+            </h1>
+            <p class="text-lg text-gray-200">
+                School Of Data Science And Forecasting
+            </p>
+        </div>
+    </div>
+
+    <!-- Navigation / Admin Link -->
+    <a class="text-red-400 font-semibold hover:text-red-300 hover:underline transition" 
+       href="{{ url_for('admin') }}">
+        Admin
+    </a>
+
+    <!-- Right Section: DAVV Logo -->
+    <div class="flex items-center">
+        <img class="h-20 w-20 object-contain bg-blue-100 rounded-full" 
+             src="/static/photo/davvLogo.png" 
+             alt="DAVV Logo">
+    </div>
+</header>

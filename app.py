@@ -7,9 +7,13 @@ app=Flask(__name__)
 def home():
     return render_template("index.html")
 
-@app.route("/INser_table")
-def insertable():
-    return render_template("")
+@app.route("/admin")
+def admin():
+    return render_template("admin.html")
+
+@app.route("/create_table")
+def createtable():
+    return f'In Creating table page'
 
 if __name__ == '__main__':
     app.run(debug=True)
