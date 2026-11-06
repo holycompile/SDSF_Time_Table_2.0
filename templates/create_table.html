@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Table | SDSF</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex flex-col justify-between bg-slate-100 text-slate-800">
+
+    <!-- Header with Top Navigation (Intact at top) -->
+    {% include 'header.html' %}
+
+    <!-- Main Content: With side spacing (padding) for clean framing -->
+    <main class="flex-grow w-full bg-slate-100 px-4 md:px-8 py-5 flex flex-col space-y-5">
+
+        <!-- Top Control Bar Card -->
+        <div class="px-5 py-3 bg-white border border-slate-200 rounded-xl flex flex-wrap items-center justify-between gap-3 shadow-sm">
+            
+            <!-- Table Title Input Section -->
+            <div class="flex items-center space-x-3 flex-grow max-w-lg">
+                <label for="tableTitle" class="text-xs font-bold text-slate-700 uppercase whitespace-nowrap">
+                    Table Title:
+                </label>
+                <input
+                    type="text"
+                    id="tableTitle"
+                    placeholder="e.g. B.Sc Data Science - Semester 3 Timetable"
+                    class="flex-grow border border-slate-300 bg-white rounded-lg px-3 py-1.5 text-xs md:text-sm outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                >
+            </div>
+
+            <!-- Table Editor Controls -->
+            <div class="flex items-center space-x-2">
+                <button
+                    id="addColumn"
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium px-3.5 py-2 rounded-lg shadow-sm transition">
+                    + Add Column
+                </button>
+                <button
+                    id="addRow"
+                    class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium px-3.5 py-2 rounded-lg shadow-sm transition">
+                    + Add Row
+                </button>
+                <button
+                    id="saveTable"
+                    class="bg-indigo-950 hover:bg-indigo-900 text-white px-5 py-2 rounded-lg text-xs font-semibold shadow-sm transition">
+                    Save Table
+                </button>
+            </div>
+
+        </div>
+
+        <!-- Section 1: Weekly Timetable Card (Formatted in Excel Style) -->
+        <div class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden space-y-3 p-5">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+                <div>
+                    <h2 class="text-base font-bold text-indigo-950 flex items-center gap-2">
+                        <span>Weekly Schedule Grid</span>
+                        <span class="bg-emerald-100 text-emerald-800 text-[11px] font-semibold px-2 py-0.5 rounded">Excel Format</span>
+                    </h2>
+                    <p class="text-xs text-slate-500">
+                        Days & Hourly Time Slots grid with dynamic cell editing.
+                    </p>
+                </div>
+                <div class="flex items-center gap-2">
+                    <button
+                        id="addColumn"
+                        class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium px-3.5 py-1.5 rounded-lg shadow-sm transition">
+                        + Add Column
+                    </button>
+                    <button
+                        id="addRow"
+                        class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium px-3.5 py-1.5 rounded-lg shadow-sm transition">
+                        + Add Row
+                    </button>
+                </div>
+            </div>
+
+            <!-- Excel-style Table Container -->
+            <div class="overflow-x-auto w-full border border-slate-300 rounded-lg">
+                <table class="w-full text-left border-collapse text-xs" id="dynamicTable">
+                    <thead id="tableHeader">
+                        <!-- Dynamic Excel Headers Rendered by JS -->
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Dynamic Excel Rows Rendered by JS -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Section 2: Dynamic Excel-Style Course & Faculty Details Table -->
+        <div class="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden space-y-3 p-5">
+            <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 pb-3">
+                <div>
+                    <h2 class="text-base font-bold text-indigo-950 flex items-center gap-2">
+                        <span>Course & Faculty Information</span>
+                        <span class="bg-emerald-100 text-emerald-800 text-[11px] font-semibold px-2 py-0.5 rounded">Excel Format</span>
+                    </h2>
+                    <p class="text-xs text-slate-500">
+                        Course codes, credits, faculty details, and class coordinator contact numbers.
+                    </p>
+                </div>
+                <button
+                    id="addCourseRow"
+                    class="bg-indigo-600 hover:bg-indigo-700 text-white text-xs font-medium px-3.5 py-2 rounded-lg shadow-sm transition">
+                    + Add Course Row
+                </button>
+            </div>
+
+            <!-- Dynamic Excel Table Structure -->
+            <div class="overflow-x-auto w-full border border-slate-300 rounded-lg">
+                <table class="w-full text-left border-collapse text-xs" id="excelTable">
+                    <!-- Dynamic Rows Rendered by JS -->
+                    <tbody id="excelTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer (Intact at bottom) -->
+    {% include 'footer.html' %}
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/create_table.js') }}"></script>
+</body>
+</html>

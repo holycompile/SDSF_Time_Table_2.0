@@ -8,10 +8,14 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between bg-gray-50">
 
-    <!-- Reusable Header -->
+    <!-- Reusable Header with Navigation -->
     {% include 'header.html' %}
 
-    {% include 'navbar.html' %}
+    <!-- Admin Main Content Area -->
+    <main class="flex-grow p-6">
+        <h1 class="text-2xl font-bold text-gray-800 mb-4">Admin Dashboard</h1>
+        <p class="text-gray-600">Select an action from the top navigation bar to manage timetables.</p>
+    </main>
 
     <!-- Reusable Footer -->
     {% include 'footer.html' %}

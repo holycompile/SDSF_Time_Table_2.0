@@ -13,7 +13,7 @@ def admin():
 
 @app.route("/create_table")
 def createtable():
-    return f'In Creating table page'
+    return render_template("create_table.html")
 
 if __name__ == '__main__':
     app.run(debug=True)
