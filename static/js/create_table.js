@@ -513,7 +513,7 @@ if (addCourseRowBtn) {
     });
 }
 
-// D. Save / Prepare Complete Unified Table Data
+// D. Save / Prepare Complete Flat Table Data
 saveBtn.addEventListener("click", function () {
     const title = document.getElementById("tableTitle").value.trim();
 
@@ -522,23 +522,42 @@ saveBtn.addEventListener("click", function () {
         return;
     }
 
-    // Complete Unified Data Payload
-    const fullTableData = {
-        title: title,
-        schedule: {
-            columns: columns,
-            rows: rows
-        },
-        courseDetails: {
-            semester: excelData.semester,
-            courseType: excelData.courseType,
-            classTeacher: excelData.classTeacher,
-            classRepresentatives: excelData.representatives.filter(r => r && (r.name || r.contact)),
-            courses: excelData.courses
-        }
+    // Convert Course & Faculty info into a 2D matrix (rows_faclty_info)
+    const rows_faclty_info = excelData.courses.map((course, index) => {
+        const rep = excelData.representatives[index] || { name: "", contact: "" };
+        return [
+            course.code,
+            course.title,
+            course.credits,
+            course.faculty,
+            course.contact,
+            course.email,
+            rep.name,
+            rep.contact
+        ];
+    });
+
+    // Extract Class Representative
+    const rep = (excelData.representatives && excelData.representatives[0]) || { name: "", contact: "" };
+    const class_represntative = {
+        name: rep.name || "",
+        number: rep.contact || ""
     };
 
-    console.log("Full Timetable & Course Data:", fullTableData);
+    // Flat, Independent Data Payload (No sub-JSONs)
+    const fullTableData = {
+        title: title,
+        columns: columns,
+        rows_weekly: rows,
+        sem_name: excelData.semester,
+        course_grp: excelData.courseType,
+        class_teacher: excelData.classTeacher.name,
+        contact_no: excelData.classTeacher.contact,
+        class_represntative: class_represntative,
+        rows_faclty_info: rows_faclty_info
+    };
+
+    console.log("Flat Timetable Data:", fullTableData);
 
     fetch('/create_table', {
         method: 'POST',
